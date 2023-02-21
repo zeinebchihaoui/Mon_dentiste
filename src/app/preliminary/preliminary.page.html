@@ -1,0 +1,48 @@
+<ion-content class="bg_blue_color">
+
+
+    <div class="title-container ion-text-center">
+        <h1><b>Obtenez un RDV virtuel</b></h1>
+        <p class="paragraph">
+            grâce à mon dentiste
+            <br> en quelques cliques
+        </p>
+    </div>
+
+
+    <ion-row>
+        <ion-col size="6" offset="3">
+            <button class="bx-item" [ngStyle]="{'opacity': !q1csExist ? 0.5 : 1 }" [disabled]="!q1csExist" [routerLink]="['/q1cs']" [queryParams]="{q1csExist,rdvExist,q1csFilled}">
+                <img src="assets/imgs/q1csIcone.png" class="iconCustom" id="patient-q1cs"  />
+                <ion-label class="labelCustomise" [ngStyle]="{'opacity': !q1csExist ? 0.5 : 1 }">
+                    1.Remplir le Q1CS
+                </ion-label>
+            </button>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col size="6">
+            <button class="bx-item" [routerLink]="['/photo']">
+                <img src="assets/imgs/personneIcone.png" class="iconCustom" id="patient-q1cs"/>
+                <ion-label class="labelCustomise" >
+                    2.Insérer des photos de votre dentition
+                </ion-label>
+            </button>
+        </ion-col>
+        <ion-col size="6">
+            <button class="bx-item" [ngStyle]="{'opacity': !rdvExist ? 0.5 : 1 }" [disabled]="!rdvExist" [routerLink]="['/home']" [queryParams]="{q1csExist,rdvExist}">
+                <img src=" assets/imgs/calendarIcon.png " class="iconCustom " id="patient-q1cs " [ngStyle]="{ 'opacity': !q1csExist ? 0.5 : 1 } " />
+                <ion-label class="labelCustomise " [ngStyle]="{ 'opacity': !q1csExist ? 0.5 : 1 } ">
+                    3.Obtenir votre RDV virtuel
+                </ion-label>
+            </button>
+        </ion-col>
+    </ion-row>
+
+    <div class="ion-text-center ion-margin-top">
+        <a routerLink="" (click)="logOut"> Se déconnecter </a>
+    </div>
+
+
+
+</ion-content>

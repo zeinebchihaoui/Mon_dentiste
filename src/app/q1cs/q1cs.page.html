@@ -1,0 +1,1036 @@
+<ion-content [fullscreen]="true">
+
+    <div *ngIf="q1csFilled ; then resumeQ1cs else fillQ1cs"></div>
+    <ng-template #resumeQ1cs>
+        <ion-header>
+            <ion-toolbar>
+                <ion-buttons slot="start">
+                    <ion-button (click)="goBack()">
+                        <ion-icon name="chevron-back-outline" mode='ios'></ion-icon>
+                    </ion-button>
+                </ion-buttons>
+                <ion-title> {{title}}</ion-title>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content>
+            <div *ngFor="let q of dataQ1CS" class="ion-padding">
+                <h2 class="title ion-text-center">
+                    <b>{{q.title}}</b>
+                </h2>
+                <div class="paragraph-container">
+                    <p class="resume" *ngIf="q.content">{{q.content}}</p>
+                    <p class="resume" *ngIf="!q.content">aucune Information</p>
+                </div>
+            </div>
+        </ion-content>
+    </ng-template>
+    <ng-template #fillQ1cs>
+        <ion-slides #slides [options]="sliderOptions">
+            <!-- slide 0  -->
+            <ion-slide>
+                <div class="divBackImgWelcome">
+                    <div class="container-to-bottom">
+                        <div class="text">
+                            Questionnaire 1ère
+                        </div>
+                        <div class="text">
+                            consultation spécialiste
+                        </div>
+                        <div class="btn-swipe">
+                            <button type="button" (click)="backToHome()">
+                                <img src="assets/imgs/precedant.png" class="btnIcon" />
+                            </button>
+                            <button type="submit" (click)="next()">
+                                <img src="assets/imgs/suivant.png" class="btnIcon" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </ion-slide>
+
+            <!-- slide 1  -->
+            <ion-slide>
+                <div class="banner">
+                    <div class="banner_img">
+                        <img src="assets/imgs/sundaytimes.jpg">
+                    </div>
+                </div>
+                <ion-row>
+                    <ion-col>
+                        <div class="text_box">
+                            <p class="animate__animated animate__fadeInUp ">
+                                Nous vous souhaitons la bienvenue dans notre Clinique d’Orthodontie B And Smile et nous
+                                nous
+                                réjouissons de bientôt vous recevoir. Pour mieux préparer notre rendez vous nous vous
+                                remercions de prendre quelques instants pour le compléter ou confirmer ces
+                                informations administratives et médicales confidentielles en toute discrétion afin de
+                                mieux
+                                comprendre votre situation et vos attentes . Vous pouvez aussi le remplir ou compléter à
+                                l’aide d’une de nos assistantes par rendez
+                                vous sur
+                            </p>
+                            <p class="animate__animated animate__fadeInUp ">
+                                <a href="http://clinique@basmiletech.com">clinique@basmiletech.com</a> ou directement au
+                                cabinet. Si vous préférez en parler directement et confidentiellement au Docteur laissez
+                                les
+                                champs à remplir avec lui.
+                            </p>
+                            <p *ngFor="let q of questions">
+                                <a (click)="questionsClick($event)" [id]="q.id">{{q.title}}</a>
+                            </p>
+
+                            <ion-grid class="bx-social ion-margin-top">
+                                <ion-row class="ion-justify-content-center">
+                                    <ion-col size="2">
+                                        <ion-icon (click)="openURL('https://www.facebook.com/BAndSmileGeneva')"
+                                            class="zmdi zmdi-facebook-box">
+                                        </ion-icon>
+                                    </ion-col>
+                                    <ion-col size="2">
+                                        <ion-icon (click)="openURL('https://www.instagram.com/bandsmilegeneva/?hl=fr')"
+                                            class="zmdi zmdi-instagram"></ion-icon>
+                                    </ion-col>
+                                    <ion-col size="2">
+                                        <ion-icon
+                                            (click)="openURL('https://www.youtube.com/channel/UCOBbv8Vtybkl7nOuwXDkPqw')"
+                                            class="zmdi zmdi-youtube"></ion-icon>
+                                    </ion-col>
+                                    <ion-col size="2">
+                                        <ion-icon (click)="openURL('https://www.basmile.com/')"
+                                            class="zmdi zmdi-wikipedia">
+                                        </ion-icon>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </div>
+                    </ion-col>
+                </ion-row>
+                <div class="btn-swipe">
+                    <button type="button" (click)="prev()">
+                        <img src="assets/imgs/precedant.png" class="btnIcon" />
+                    </button>
+                    <button type="submit" (click)="next()">
+                        <img src="assets/imgs/suivant.png" class="btnIcon" />
+                    </button>
+                </div>
+            </ion-slide>
+
+
+            <!-- slide1_Form  -->
+
+            <ion-slide>
+                <h2 class="margin-top-5">Veuillez confirmer ou compléter les informations <br> administratives suivantes :</h2>
+                <form [formGroup]="slide1_Form" (ngSubmit)="onSubmitSlide1_Form()">
+                    <div class="form">
+                        <ion-row>
+                            <ion-col size="6">
+                                <p class="ion-text-left ion-no-margin">Nom</p>
+                                <ion-item class="animate__animated animate__fadeInUp" lines="none">
+                                    <ion-input mode="md" type="text" formControlName="firstName"></ion-input>
+                                </ion-item>
+                                <span class="error" *ngIf="isSubmittedSlide1_Form && slide1.firstName.errors?.required">
+                                    Nom est requis.
+                                </span>
+                            </ion-col>
+                            <ion-col size="6">
+                                <p class="ion-text-left ion-no-margin">Prénom</p>
+                                <ion-item class="animate__animated animate__fadeInUp" lines="none">
+                                    <ion-input mode="md" type="text" formControlName="lastName"></ion-input>
+                                </ion-item>
+                                <span class="error" *ngIf="isSubmittedSlide1_Form && slide1.lastName.errors?.required">
+                                    Prénom est requis.
+                                </span>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col size="12">
+                                <p class="ion-text-left ion-no-margin">Date de naissance</p>
+                                <ion-item class="animate__animated animate__fadeInUp" lines="none">
+                                    <ion-datetime displayFormat="DD/MM/YYYY" mode='md' formControlName="birthDate"
+                                        cancel-text="Annuler" doneText="terminé"></ion-datetime>
+                                </ion-item>
+                                <span class="error" *ngIf="isSubmittedSlide1_Form && slide1.birthDate.errors?.required">
+                                    Date de naissance est requis.
+                                </span>
+                            </ion-col>
+                            <ion-col size="12">
+                                <p class="ion-text-left ion-no-margin">Address</p>
+                                <ion-item class="animate__animated animate__fadeInUp" lines="none">
+                                    <ion-input mode="md" type="text" formControlName="address"></ion-input>
+                                </ion-item>
+                                <span class="error" *ngIf="isSubmittedSlide1_Form && slide1.address.errors?.required">
+                                    Address est requis.
+                                </span>
+                            </ion-col>
+                            <ion-col size="12">
+                                <p class="ion-text-left ion-no-margin">Code Postal</p>
+                                <ion-item class="animate__animated animate__fadeInUp" lines="none">
+                                    <ion-input mode="md" type="text" formControlName="postalCode"></ion-input>
+                                </ion-item>
+                                <span class="error"
+                                    *ngIf="isSubmittedSlide1_Form && slide1.postalCode.errors?.required">
+                                    Code Postal est requis.
+                                </span>
+                            </ion-col>
+                            <ion-col size="12">
+                                <p class="ion-text-left ion-no-margin">Ville</p>
+                                <ion-item class="animate__animated animate__fadeInUp" lines="none">
+                                    <ion-input mode="md" type="text" formControlName="city"></ion-input>
+                                </ion-item>
+                                <span class="error" *ngIf="isSubmittedSlide1_Form && slide1.city.errors?.required">
+                                    Ville est requis.
+                                </span>
+                            </ion-col>
+                        </ion-row>
+
+                    </div>
+                    <div class="btn-swipe">
+                        <button type="button" (click)="prev()">
+                            <img src="assets/imgs/precedant.png" class="btnIcon" />
+                        </button>
+                        <button>
+                            <img src="assets/imgs/suivant.png" class="btnIcon" />
+                        </button>
+                    </div>
+                </form>
+
+            </ion-slide>
+            <!-- slide2_Form -->
+
+            <ion-slide>
+                <div class="header">
+                    <p>&ensp; <br>&ensp;</p>
+                </div>
+                <form [formGroup]="slide2_Form" (ngSubmit)="onSubmitSlide2_Form()">
+                    <div class="form ion-padding-top">
+                        <ion-row>
+                            <ion-col size="12">
+                                <p class="ion-text-left ion-no-margin">Email</p>
+                                <ion-item class="animate__animated animate__fadeInUp" lines="none">
+                                    <ion-input mode="md" type="text" formControlName="email"></ion-input>
+                                </ion-item>
+                                <span class="error" *ngIf="isSubmittedSlide2_Form && slide2.email.errors?.required">
+                                    Email est requis.
+                                </span>
+                                <span class="error" *ngIf="isSubmittedSlide2_Form && slide2.email.errors?.pattern">
+                                    Please provide valid email id.
+                                </span>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row class="radio_list">
+                            <ion-col size="12">
+                                <ion-radio-group class="bx-radio" formControlName="idPays">
+                                    <p class="ion-text-left ion-no-margin">Indicatif Téléphone </p>
+                                    <div class="scroll-x">
+                                        <ion-item *ngFor=" let element of pays">
+                                            <ion-label>{{element.indicatif_telephonique}} ({{element.code}})</ion-label>
+                                            <ion-radio slot="start" value="{{element.id_pays}}"></ion-radio>
+                                        </ion-item>
+                                    </div>
+                                </ion-radio-group>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col size="12">
+                                <p class="ion-text-left ion-no-margin">Num Téléphone</p>
+                                <ion-item class="animate__animated animate__fadeInUp" lines="none">
+                                    <ion-input mode="md" id="tel" type="number" formControlName="tel"></ion-input>
+                                </ion-item>
+                                <span class="error" *ngIf="isSubmittedSlide2_Form && slide2.tel.errors?.required">
+                                    Tél est requis.
+                                </span>
+                            </ion-col>
+                            <ion-col size="12">
+                                <p class="ion-text-left ion-no-margin">Profession</p>
+                                <ion-item class="animate__animated animate__fadeInUp" lines="none">
+                                    <ion-input mode="md" type="text" formControlName="profession"></ion-input>
+                                </ion-item>
+                                <span class="error"
+                                    *ngIf="isSubmittedSlide2_Form && slide2.profession.errors?.required">
+                                    Profession est requis.
+                                </span>
+                            </ion-col>
+                            <ion-col size="12">
+                                <p class="ion-text-left ion-no-margin">Comment avez-vous connu la clinique ?</p>
+                                <ion-radio-group name="radio-group" formControlName="knowClinic">
+                                    <div class="containerRadioGroup" *ngFor="let radio of listknowClinic">
+                                        <div class="columnInputRadioButton">
+                                            <ion-radio slot="start" mode='md' [id]="radio.id"
+                                                (click)="clickRadioBtn($event)" checked="false" [value]="radio.value">
+                                            </ion-radio>
+                                        </div>
+                                        <div class="columnLabelRadioButton">
+                                            <ion-label class="label">{{radio.label}}</ion-label>
+                                            <!-- internet children -->
+                                            <div *ngIf="internetBtnEnable && radio.id == 2">
+                                                <ion-radio-group name="radio-grouppp">
+                                                    <div class="containerRadioGroup animate__animated animate__fadeInUp"
+                                                        *ngFor="let m of meansOfInternet">
+                                                        <div class="columnInputRadioButton">
+                                                            <ion-radio slot="start" mode='md' [value]="m.value">
+                                                            </ion-radio>
+                                                        </div>
+                                                        <div class="columnLabelRadioButton">
+                                                            <ion-label class="label">{{m.label}}</ion-label>
+                                                        </div>
+                                                    </div>
+                                                </ion-radio-group>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ion-radio-group>
+                                <!-- patients List -->
+                                <div *ngIf="patientsListBtnEnable" style="position: relative;">
+                                    <!--  <ion-row>
+                                    <ion-col size="12">
+                                        <p class="ion-text-left ion-no-margin">Nom du Patient:</p>
+                                        <ion-item class="animate__animated animate__fadeInUp" lines="none">
+                                            <ion-input mode="md" type="text" (click)="displayData(displayPatient)"
+                                                formControlName="patient"></ion-input>
+                                        </ion-item>
+                                    </ion-col>
+                                </ion-row> -->
+
+                                    <ion-row>
+                                        <ion-col size="12" *ngFor="let item of patientSelect">
+                                            <p class="ion-text-left ion-no-margin">{{item.label}}</p>
+                                            <ion-item class="animate__animated animate__fadeInUp" lines="none">
+                                                <ion-input mode="md" type="text" (click)="getUserBySerach(item)"
+                                                    formControlName="{{item.formControl}}"></ion-input>
+                                            </ion-item>
+                                        </ion-col>
+                                    </ion-row>
+
+                                </div>
+                            </ion-col>
+                        </ion-row>
+                    </div>
+                    <div class="btn-swipe">
+                        <button type="button" (click)="prev()">
+                            <img src="assets/imgs/precedant.png" class="btnIcon" />
+                        </button>
+                        <button>
+                            <img src="assets/imgs/suivant.png" class="btnIcon" />
+                        </button>
+                    </div>
+                </form>
+            </ion-slide>
+            <!-- slide3_Form -->
+
+            <ion-slide>
+                <div class="header">
+                    <p>&ensp; <br>&ensp;</p>
+                </div>
+                <form [formGroup]="slide3_Form" (ngSubmit)="onSubmitSlide3_Form()">
+                    <div class="form ion-padding-top">
+                        <ion-row class="radio_list">
+                            <ion-col size="12">
+                                <p class="ion-text-left ion-no-margin">Qu’est ce qui vous amène à nous consulter</p>
+                                <ion-item class="animate__animated animate__fadeInUp" lines="none">
+                                    <ion-textarea rows="6" mode="md" type="text" formControlName="reasonConsultation">
+                                    </ion-textarea>
+                                </ion-item>
+                                <!-- <span class="error"
+                                *ngIf="isSubmittedSlide3_Form && slide3.reasonConsultation.errors?.required">
+                                motif de consultation est requis.
+                            </span> -->
+                            </ion-col>
+                            <ion-col size="12">
+                                <ion-radio-group class="bx-radio" formControlName="smileMark">
+                                    <p class="ion-text-left">Notez votre sourire de 0 à 10 :</p>
+                                    <div class="scroll-x">
+                                        <ion-item *ngFor=" let element of ['1','2','3','4','5','6','7','8','9','10']">
+                                            <ion-label>{{element}}</ion-label>
+                                            <ion-radio slot="start" value="{{element}}"></ion-radio>
+                                        </ion-item>
+                                    </div>
+                                </ion-radio-group>
+                                <!-- <span class="error" *ngIf="isSubmittedSlide3_Form && slide3.smileMark.errors?.required">
+                                smileMark est requis.
+                            </span> -->
+                            </ion-col>
+                            <ion-col size="12">
+                                <ion-radio-group class="bx-radio" formControlName="chewingMark">
+                                    <p class="ion-text-left">Notez votre mastication de 0 à 10 :</p>
+                                    <div class="scroll-x">
+                                        <ion-item *ngFor=" let element of ['1','2','3','4','5','6','7','8','9','10']">
+                                            <ion-label>{{element}}</ion-label>
+                                            <ion-radio slot="start" value="{{element}}"></ion-radio>
+                                        </ion-item>
+                                    </div>
+                                </ion-radio-group>
+                                <!--  <span class="error" *ngIf="isSubmittedSlide3_Form && slide3.chewingMark.errors?.required">
+                                chewingMark est requis.
+                            </span> -->
+                            </ion-col>
+                        </ion-row>
+                    </div>
+                    <div class="btn-swipe">
+                        <button type="button" (click)="prev()">
+                            <img src="assets/imgs/precedant.png" class="btnIcon" />
+                        </button>
+                        <button>
+                            <img src="assets/imgs/suivant.png" class="btnIcon" />
+                        </button>
+                    </div>
+                </form>
+
+            </ion-slide>
+            <!-- slide4_Form -->
+
+            <ion-slide>
+                <div class="header">
+                    <p  class="margin-top-5"> Vous êtes intéressés par : <br> &ensp;</p>
+                </div>
+                <form [formGroup]="slide4_Form" (ngSubmit)="onSubmitSlide4_Form()">
+                    <div class="form ">
+                        <div class="animate__animated animate__fadeInUp ion-padding bx-check-field">
+                            <div class="item_inner " *ngFor=" let item of checkFieldsSlide4 ; let i=index">
+                                <ion-row class="ion-align-items-center ion-justify-content-between">
+                                    <ion-col size="11">
+                                        <p>{{item.label}}</p>
+                                    </ion-col>
+                                    <ion-col size="1">
+                                        <ion-checkbox [checked]="item.checked" mode='md' [value]="item.value"
+                                            (ionChange)="onCheckSlide(4,i)"></ion-checkbox>
+                                    </ion-col>
+                                </ion-row>
+                                <div *ngIf="i == 0 && checkFieldsSlide4[0].checked">
+                                    <ion-row class="radio_list">
+                                        <ion-col size="12">
+                                            <ion-radio-group class="bx-radio">
+                                                <p class="ion-text-left">Quand vous mangez vos dents s'emboitent</p>
+                                                <div class="scroll-x">
+                                                    <ion-item *ngFor=" let element of occlusionField.suggetions ">
+                                                        <ion-label>{{element.label}}</ion-label>
+                                                        <ion-radio slot="start" value="{{element.value}}"
+                                                            (click)="selectRadioOcculation(element.value)"></ion-radio>
+                                                    </ion-item>
+                                                </div>
+                                            </ion-radio-group>
+                                        </ion-col>
+                                    </ion-row>
+                                </div>
+                                <div *ngIf="i == 1  && checkFieldsSlide4[1].checked">
+                                    <ion-row class="radio_list">
+                                        <ion-col size="12">
+                                            <ion-radio-group class="bx-radio" *ngFor=" let element of aestheticFields ">
+                                                <p class="ion-text-left">{{element.label}}</p>
+                                                <div class="scroll-x">
+                                                    <ion-item *ngFor=" let item of element.suggetions ">
+                                                        <ion-label>{{item.label}}</ion-label>
+                                                        <ion-radio slot="start" value="{{item.value}}"
+                                                            (click)="selectRadioAesthetic(element.formControl , item.value)">
+                                                        </ion-radio>
+                                                    </ion-item>
+                                                </div>
+                                            </ion-radio-group>
+                                        </ion-col>
+                                    </ion-row>
+                                </div>
+                            </div>
+                            <!-- <span class="error"
+                            *ngIf="isSubmittedSlide4_Form && slide4_Form.controls['occlusion'].errors?.required">
+                            Merci de sélectionner une ou plusieurs.
+                        </span> -->
+                        </div>
+                    </div>
+                    <div class=" btn-swipe ">
+                        <button type="button" (click)="prev()">
+                            <img src="assets/imgs/precedant.png " class="btnIcon " />
+                        </button>
+                        <button type="submit ">
+                            <img src="assets/imgs/suivant.png " class="btnIcon " />
+                        </button>
+                    </div>
+                </form>
+
+            </ion-slide>
+            <!-- slide5_Form -->
+
+            <ion-slide>
+                <div class="header ">
+                    <p class="margin-top-5"> Vous souhaitez : <br> &ensp;</p>
+                </div>
+                <form [formGroup]="slide5_Form" (ngSubmit)="onSubmitSlide5_Form()">
+                    <div class="form ">
+                        <div class="animate__animated animate__fadeInUp ion-padding bx-check-field">
+                            <div class="item_inner " *ngFor=" let item of wishes ; let i=index">
+                                <ion-row class="ion-align-items-center ion-justify-content-between">
+                                    <ion-col size="11">
+                                        <p>{{item.label}}</p>
+                                    </ion-col>
+                                    <ion-col size="1">
+                                        <ion-checkbox [checked]="item.checked" mode='md' [value]="item.value"
+                                            (ionChange)="onCheckSlide(5,i)"></ion-checkbox>
+                                    </ion-col>
+                                </ion-row>
+                            </div>
+                            <!-- <span class="error"
+                            *ngIf="isSubmittedSlide5_Form && slide5_Form.controls['wishes'].errors?.required">
+                            Merci de sélectionner une ou plusieurs.
+                        </span> -->
+                        </div>
+                    </div>
+                    <div class=" btn-swipe ">
+                        <button type="button" (click)="prev()">
+                            <img src="assets/imgs/precedant.png " class="btnIcon " />
+                        </button>
+                        <button type="submit ">
+                            <img src="assets/imgs/suivant.png " class="btnIcon " />
+                        </button>
+                    </div>
+                </form>
+            </ion-slide>
+
+            <!-- slide6_Form -->
+
+            <ion-slide>
+                <div class="header ">
+                    <p class="margin-top-5"> Questionnaire Financier <br> &ensp;</p>
+                </div>
+                <form [formGroup]="slide6_Form" (ngSubmit)="onSubmitSlide6_Form()">
+                    <div class="form">
+                        <ion-row class="radio_list">
+
+                            <ion-col size="12">
+                                <ion-radio-group class="bx-radio" formControlName="insurance">
+                                    <p class="ion-text-left">Êtes-vous assuré(e) ? :</p>
+                                    <div class="scroll-x">
+                                        <ion-item *ngFor=" let element of [ 'Oui', 'Non'] ">
+                                            <ion-label>{{element}}</ion-label>
+                                            <ion-radio slot="start" value="{{element}}"></ion-radio>
+                                        </ion-item>
+                                    </div>
+                                </ion-radio-group>
+                                <!--  <span class="error" *ngIf="isSubmittedSlide6_Form && slide6.insurance.errors?.required">
+                                Assurance est requis.
+                            </span> -->
+                            </ion-col>
+
+                            <ion-col size="12">
+                                <p class="ion-text-left ion-no-margin">Avez vous une assurance dentaire qui vous prends
+                                    en
+                                    charge ? </p>
+                                <ion-item class="animate__animated animate__fadeInUp" lines="none">
+                                    <ion-textarea rows="6" mode="md" type="text" formControlName="insuranceInCharge">
+                                    </ion-textarea>
+                                </ion-item>
+                                <!-- <span class="error"
+                                *ngIf="isSubmittedSlide6_Form && slide6.insuranceInCharge.errors?.required">
+                                Assurance dentaire est requis.
+                            </span> -->
+                            </ion-col>
+
+                            <ion-col size="12">
+                                <ion-radio-group class="bx-radio" formControlName="treatmentCost">
+                                    <p class="ion-text-left">Avez vous une idée du coùt du traitement? :</p>
+                                    <div class="scroll-x">
+                                        <ion-item
+                                            *ngFor=" let element of [ 'entre 1000 et 3000', 'entre 3000 et 5000', 'entre 5000 et 7000', 'supérieur à 7000'] ">
+                                            <ion-label>{{element}}</ion-label>
+                                            <ion-radio slot="start" value="{{element}}"></ion-radio>
+                                        </ion-item>
+                                    </div>
+                                </ion-radio-group>
+                                <!-- <span class="error" *ngIf="isSubmittedSlide6_Form && slide6.treatmentCost.errors?.required">
+                                Le coùt du traitement est requis.
+                            </span> -->
+                            </ion-col>
+
+                            <ion-col size="12">
+                                <ion-radio-group class="bx-radio" formControlName="treatmentBudget">
+                                    <p class="ion-text-left">Avez vous prévu un budget pour ce traitement? :</p>
+                                    <div class="scroll-x">
+                                        <ion-item
+                                            *ngFor=" let element of [ 'entre 1000 et 3000', 'entre 3000 et 5000', 'entre 5000 et 7000', 'supérieur à 7000'] ">
+                                            <ion-label>{{element}}</ion-label>
+                                            <ion-radio slot="start" value="{{element}}"></ion-radio>
+                                        </ion-item>
+                                    </div>
+                                </ion-radio-group>
+                                <!-- <span class="error"
+                                *ngIf="isSubmittedSlide6_Form && slide6.treatmentBudget.errors?.required">
+                                Le budget est requis.
+                            </span> -->
+                            </ion-col>
+
+                        </ion-row>
+                    </div>
+                    <div class="btn-swipe">
+                        <button type="button" (click)="prev()">
+                            <img src="assets/imgs/precedant.png" class="btnIcon" />
+                        </button>
+                        <button>
+                            <img src="assets/imgs/suivant.png" class="btnIcon" />
+                        </button>
+                    </div>
+                </form>
+            </ion-slide>
+
+            <!-- slide Questionnaire médical -->
+
+            <ion-slide>
+                <div class="header ">
+                    <p class="margin-top-5"> Questionnaire médical </p>
+                </div>
+                <form [formGroup]="slideSelectForm" (ngSubmit)="onSubmitMedicalForm()">
+                    <div class="form ion-padding-top">
+                        <ion-row>
+                            <ion-col size="12" *ngFor="let item of medicalSelect">
+                                <p class="ion-text-left ion-no-margin">{{item.label}}</p>
+                                <ion-item class="animate__animated animate__fadeInUp" lines="none">
+                                    <ion-input mode="md" type="text" (click)="getUserBySerach(item)"
+                                        formControlName="{{item.formControl}}"></ion-input>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+                    </div>
+                    <div class="btn-swipe">
+                        <button type="button" (click)="prev()">
+                            <img src="assets/imgs/precedant.png" class="btnIcon" />
+                        </button>
+                        <button>
+                            <img src="assets/imgs/suivant.png" class="btnIcon" />
+                        </button>
+                    </div>
+                </form>
+            </ion-slide>
+
+            <!-- slide7_Form -->
+
+            <ion-slide>
+                <div class="header ">
+                    <p class="margin-top-5"> Questionnaire dentaire </p>
+                </div>
+                <form [formGroup]="slide7_Form" (ngSubmit)="onSubmitSlide7_Form()">
+                    <div class="form">
+                        <ion-row class="radio_list">
+
+                            <ion-col size="12">
+                                <ion-radio-group class="bx-radio" formControlName="cariesCompleted">
+                                    <p class="ion-text-left">Est-ce que tous vos soins de caries sont terminés?</p>
+                                    <div class="scroll-x">
+                                        <ion-item *ngFor=" let element of [ 'Oui', 'Non'] ">
+                                            <ion-label>{{element}}</ion-label>
+                                            <ion-radio slot="start" value="{{element}}"></ion-radio>
+                                        </ion-item>
+                                    </div>
+                                </ion-radio-group>
+                                <span class="error"
+                                    *ngIf="isSubmittedSlide7_Form && slide7.cariesCompleted.errors?.required">
+                                    cariesCompleted est requis.
+                                </span>
+                            </ion-col>
+
+                            <ion-col size="12">
+                                <ion-radio-group class="bx-radio" formControlName="dentalSensitivities">
+                                    <p class="ion-text-left">Avez-vous des sensibilités dentaires?</p>
+                                    <div class="scroll-x">
+                                        <ion-item *ngFor=" let element of [ 'Oui', 'Non'] ">
+                                            <ion-label>{{element}}</ion-label>
+                                            <ion-radio slot="start" value="{{element}}"></ion-radio>
+                                        </ion-item>
+                                    </div>
+                                </ion-radio-group>
+                                <span class="error"
+                                    *ngIf="isSubmittedSlide7_Form && slide7.dentalSensitivities.errors?.required">
+                                    dentalSensitivities est requis.
+                                </span>
+                            </ion-col>
+
+                            <ion-col size="12">
+                                <ion-radio-group class="bx-radio" formControlName="dentalPains">
+                                    <p class="ion-text-left">Avez-vous des douleurs dentaires ?</p>
+                                    <div class="scroll-x">
+                                        <ion-item *ngFor=" let element of [ 'Oui', 'Non'] ">
+                                            <ion-label>{{element}}</ion-label>
+                                            <ion-radio slot="start" value="{{element}}"></ion-radio>
+                                        </ion-item>
+                                    </div>
+                                </ion-radio-group>
+                                <span class="error"
+                                    *ngIf="isSubmittedSlide7_Form && slide7.dentalPains.errors?.required">
+                                    dentalPains est requis.
+                                </span>
+                            </ion-col>
+
+                            <ion-col size="12">
+                                <ion-radio-group class="bx-radio" formControlName="GrindsTeeth">
+                                    <p class="ion-text-left">Grincez-vous des dents la nuit ?</p>
+                                    <div class="scroll-x">
+                                        <ion-item *ngFor=" let element of [ 'Oui', 'Non'] ">
+                                            <ion-label>{{element}}</ion-label>
+                                            <ion-radio slot="start" value="{{element}}"></ion-radio>
+                                        </ion-item>
+                                    </div>
+                                </ion-radio-group>
+                                <span class="error"
+                                    *ngIf="isSubmittedSlide7_Form && slide7.GrindsTeeth.errors?.required">
+                                    GrindsTeeth est requis.
+                                </span>
+                            </ion-col>
+
+                        </ion-row>
+                    </div>
+                    <div class="btn-swipe ">
+                        <button type="button" (click)="prev()">
+                            <img src="assets/imgs/precedant.png " class="btnIcon " />
+                        </button>
+
+                        <button type="submit ">
+                            <img src="assets/imgs/suivant.png " class="btnIcon " />
+                        </button>
+                    </div>
+                </form>
+            </ion-slide>
+            <!-- slide8_Form -->
+
+            <ion-slide>
+                <div class="header">
+                    <p>&ensp; <br>&ensp;</p>
+                </div>
+                <form [formGroup]="slide8_Form" (ngSubmit)="onSubmitSlide8_Form()">
+                    <div class="form ion-padding-top">
+                        <ion-row class="radio_list">
+                            <ion-col size="12">
+                                <ion-radio-group class="bx-radio" formControlName="gumsOnBrushing">
+                                    <p class="ion-text-left">Vos gencives saignent-elles lors du brossage ?</p>
+                                    <div class="scroll-x">
+                                        <ion-item *ngFor=" let element of [ 'Oui', 'Non'] ">
+                                            <ion-label>{{element}}</ion-label>
+                                            <ion-radio slot="start" value="{{element}}"></ion-radio>
+                                        </ion-item>
+                                    </div>
+                                </ion-radio-group>
+                                <span class="error"
+                                    *ngIf="isSubmittedSlide8_Form && slide8.gumsOnBrushing.errors?.required">
+                                    gumsOnBrushing est requis.
+                                </span>
+                            </ion-col>
+
+                            <ion-col size="12">
+                                <ion-radio-group class="bx-radio" formControlName="orthodonticTreatment">
+                                    <p class="ion-text-left">Avez-vous déjà bénéficié d’un traitement orthodontique ?
+                                    </p>
+                                    <div class="scroll-x">
+                                        <ion-item *ngFor=" let element of [ 'Oui', 'Non'] ">
+                                            <ion-label>{{element}}</ion-label>
+                                            <ion-radio slot="start" value="{{element}}"></ion-radio>
+                                        </ion-item>
+                                    </div>
+                                </ion-radio-group>
+                                <span class="error"
+                                    *ngIf="isSubmittedSlide8_Form && slide8.orthodonticTreatment.errors?.required">
+                                    orthodonticTreatment est requis.
+                                </span>
+                            </ion-col>
+
+                            <ion-col size="12">
+                                <ion-radio-group class="bx-radio" formControlName="lastDescaling">
+                                    <p class="ion-text-left">Date de votre dernier détartrage ?</p>
+                                    <div class="scroll-x">
+                                        <ion-item *ngFor=" let element of [ '6 Mois', '1 an', '2 an' ,'plus'] ">
+                                            <ion-label>{{element}}</ion-label>
+                                            <ion-radio slot="start" value="{{element}}"></ion-radio>
+                                        </ion-item>
+                                    </div>
+                                </ion-radio-group>
+                                <span class="error"
+                                    *ngIf="isSubmittedSlide8_Form && slide8.lastDescaling.errors?.required">
+                                    orthodonticTreatment est requis.
+                                </span>
+                            </ion-col>
+
+                            <ion-col size="12">
+                                <ion-radio-group class="bx-radio" formControlName="BreatheByMouth">
+                                    <p class="ion-text-left">Respirez-vous par la bouche, par exemple en dormant ?</p>
+                                    <div class="scroll-x">
+                                        <ion-item *ngFor=" let element of [ 'Oui', 'Non'] ">
+                                            <ion-label>{{element}}</ion-label>
+                                            <ion-radio slot="start" value="{{element}}"></ion-radio>
+                                        </ion-item>
+                                    </div>
+                                </ion-radio-group>
+                                <span class="error"
+                                    *ngIf="isSubmittedSlide8_Form && slide8.BreatheByMouth.errors?.required">
+                                    BreatheByMouth est requis.
+                                </span>
+                            </ion-col>
+                        </ion-row>
+                    </div>
+                    <div class="btn-swipe ">
+                        <button type="button" (click)="prev()">
+                            <img src="assets/imgs/precedant.png " class="btnIcon " />
+                        </button>
+
+                        <button type="submit ">
+                            <img src="assets/imgs/suivant.png " class="btnIcon " />
+                        </button>
+                    </div>
+                </form>
+            </ion-slide>
+
+            <!-- slide9_Form -->
+
+            <ion-slide>
+                <div class="header">
+                    <p>&ensp; <br>&ensp;</p>
+                </div>
+                <form [formGroup]="slide9_Form" (ngSubmit)="onSubmitSlide9_Form()">
+                    <div class="form ion-padding-top">
+                        <ion-row class="radio_list">
+                            <ion-col size="12">
+                                <ion-radio-group class="bx-radio" formControlName="affectionOrl">
+                                    <p class="ion-text-left">Présentez-vous une affection ORL reconnue ?</p>
+                                    <div class="scroll-x">
+                                        <ion-item *ngFor=" let element of [ 'Oui', 'Non'] ">
+                                            <ion-label>{{element}}</ion-label>
+                                            <ion-radio slot="start" value="{{element}}"></ion-radio>
+                                        </ion-item>
+                                    </div>
+                                </ion-radio-group>
+                                <span class="error"
+                                    *ngIf="isSubmittedSlide9_Form && slide9.affectionOrl.errors?.required">
+                                    affectionOrl est requis.
+                                </span>
+                            </ion-col>
+                            <ion-col size="12">
+                                <ion-radio-group class="bx-radio" formControlName="jawPain">
+                                    <p class="ion-text-left">Souffrez-vous de craquements ou de douleurs articulaires au
+                                        niveau des mâchoires ?</p>
+                                    <div class="scroll-x">
+                                        <ion-item *ngFor=" let element of [ 'Oui', 'Non'] ">
+                                            <ion-label>{{element}}</ion-label>
+                                            <ion-radio slot="start" value="{{element}}"></ion-radio>
+                                        </ion-item>
+                                    </div>
+                                </ion-radio-group>
+                                <span class="error" *ngIf="isSubmittedSlide9_Form && slide9.jawPain.errors?.required">
+                                    jawPain est requis.
+                                </span>
+                            </ion-col>
+                            <ion-col size="12">
+                                <ion-radio-group class="bx-radio" formControlName="allergy">
+                                    <p class="ion-text-left">Êtes-vous sujet à des réactions allergiques (Rhume des
+                                        foins,Urticaire,Latex,Alliages...)?
+                                    </p>
+                                    <div class="scroll-x">
+                                        <ion-item *ngFor=" let element of [ 'Oui', 'Non'] ">
+                                            <ion-label>{{element}}</ion-label>
+                                            <ion-radio slot="start" value="{{element}}"></ion-radio>
+                                        </ion-item>
+                                    </div>
+                                </ion-radio-group>
+                                <span class="error" *ngIf="isSubmittedSlide9_Form && slide9.allergy.errors?.required">
+                                    allergy est requis.
+                                </span>
+                            </ion-col>
+                        </ion-row>
+                    </div>
+                    <div class="btn-swipe ">
+                        <button type="button" (click)="prev()">
+                            <img src="assets/imgs/precedant.png " class="btnIcon " />
+                        </button>
+
+                        <button type="submit ">
+                            <img src="assets/imgs/suivant.png " class="btnIcon " />
+                        </button>
+                    </div>
+                </form>
+            </ion-slide>
+
+            <!-- slide10_Form -->
+
+            <ion-slide>
+                <div class="header ">
+                    <p class="margin-top-5"> Questionnaire Medical Général </p>
+                </div>
+                <form [formGroup]="slide10_Form" (ngSubmit)="onSubmitSlide10_Form()">
+                    <div class="form ion-padding-top">
+                        <ion-row class="radio_list">
+                            <ion-col size="12">
+                                <ion-radio-group class="bx-radio" formControlName="BloodProblems">
+                                    <p class="ion-text-left">Problèmes sanguins ( hémophilie, sang clair, anémie..) ?
+                                    </p>
+                                    <div class="scroll-x">
+                                        <ion-item *ngFor=" let element of [ 'Oui', 'Non'] ">
+                                            <ion-label>{{element}}</ion-label>
+                                            <ion-radio slot="start" value="{{element}}"></ion-radio>
+                                        </ion-item>
+                                    </div>
+                                </ion-radio-group>
+                                <span class="error"
+                                    *ngIf="isSubmittedSlide10_Form && slide10.BloodProblems.errors?.required">
+                                    BloodProblems est requis.
+                                </span>
+                            </ion-col>
+
+                            <ion-col size="12">
+                                <ion-radio-group class="bx-radio" formControlName="diabete">
+                                    <p class="ion-text-left">Êtes-vous diabétiques ?</p>
+                                    <div class="scroll-x">
+                                        <ion-item *ngFor=" let element of [ 'Oui', 'Non'] ">
+                                            <ion-label>{{element}}</ion-label>
+                                            <ion-radio slot="start" value="{{element}}"></ion-radio>
+                                        </ion-item>
+                                    </div>
+                                </ion-radio-group>
+                                <span class="error" *ngIf="isSubmittedSlide10_Form && slide10.diabete.errors?.required">
+                                    diabete est requis.
+                                </span>
+                            </ion-col>
+
+                            <ion-col size="12">
+                                <ion-radio-group class="bx-radio" formControlName="cardiac">
+                                    <p class="ion-text-left">Troubles cardiaques ?</p>
+                                    <div class="scroll-x">
+                                        <ion-item *ngFor=" let element of [ 'Oui', 'Non'] ">
+                                            <ion-label>{{element}}</ion-label>
+                                            <ion-radio slot="start" value="{{element}}"></ion-radio>
+                                        </ion-item>
+                                    </div>
+                                </ion-radio-group>
+                                <span class="error" *ngIf="isSubmittedSlide10_Form && slide10.cardiac.errors?.required">
+                                    cardiac est requis.
+                                </span>
+                            </ion-col>
+                        </ion-row>
+                    </div>
+                    <div class="btn-swipe ">
+                        <button type="button" (click)="prev()">
+                            <img src="assets/imgs/precedant.png " class="btnIcon " />
+                        </button>
+
+                        <button type="submit ">
+                            <img src="assets/imgs/suivant.png " class="btnIcon " />
+                        </button>
+                    </div>
+                </form>
+
+            </ion-slide>
+            <!-- slide11_Form -->
+
+            <ion-slide>
+                <div class="header">
+                    <p>&ensp; <br>&ensp;</p>
+                </div>
+                <form [formGroup]="slide11_Form" (ngSubmit)="onSubmitSlide11_Form()">
+                    <div class="form ion-padding-top">
+                        <ion-row class="radio_list">
+                            <ion-col size="12">
+                                <p class="ion-text-left ion-no-margin">Risque viral ? (Hépatites A B C) ou infection ?
+                                    Facultatif
+                                </p>
+                                <ion-item class="animate__animated animate__fadeInUp" lines="none">
+                                    <ion-input mode="md" type="text" formControlName="viralRisk"></ion-input>
+                                </ion-item>
+                            </ion-col>
+
+                            <ion-col size="12">
+                                <p class="ion-text-left ion-no-margin"> Nerveux? Perte de connaissance? Vertiges? Autre
+                                </p>
+                                <ion-item class="animate__animated animate__fadeInUp" lines="none">
+                                    <ion-input mode="md" type="text" formControlName="nervous"></ion-input>
+                                </ion-item>
+                            </ion-col>
+
+                            <ion-col size="12">
+                                <p class="ion-text-left ion-no-margin"> Prenez-vous des médicaments en particulier ?<br>
+                                    Si
+                                    oui, lesquels et pourquoi ?</p>
+                                <ion-item class="animate__animated animate__fadeInUp" lines="none">
+                                    <ion-input mode="md" type="text" formControlName="drugsTaken"></ion-input>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+                    </div>
+                    <div class="btn-swipe ">
+                        <button type="button" (click)="prev()">
+                            <img src="assets/imgs/precedant.png " class="btnIcon " />
+                        </button>
+
+                        <button type="submit ">
+                            <img src="assets/imgs/suivant.png " class="btnIcon " />
+                        </button>
+                    </div>
+                </form>
+            </ion-slide>
+
+            <ion-slide>
+                <div class="divImgDeduction ">
+                    <div class="container-to-bottom ">
+                        <div class="text ">
+                            Déduction
+                        </div>
+                        <div class="text ">
+                            Médicale
+                        </div>
+                        <div class="btn-swipe ">
+                            <button type="button" (click)="prev()">
+                                <img src="assets/imgs/precedant.png " class="btnIcon " />
+                            </button>
+                            <button type="submit" (click)="next() ">
+                                <img src="assets/imgs/suivant.png " class="btnIcon " />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </ion-slide>
+            <!-- slide résumé de vos réponses -->
+            <ion-slide>
+
+                <div class="header">
+                    <p class="margin-top-5">Voci un résumé de vos réponses : </p>
+                </div>
+                <div class="bx-resume">
+                    <div *ngFor=" let item of dataQ1CS" class="bx-content">
+                        <h3>{{item.title}}</h3>
+                        <p> {{ (item.content)? item.content : 'aucune Information' }}</p>
+                    </div>
+                </div>
+                <div class="btn-swipe ">
+                    <button type="button" (click)="prev()">
+                        <img src="assets/imgs/precedant.png " class="btnIcon " />
+                    </button>
+
+                    <button type="button" (click)="next()">
+                        <img src="assets/imgs/suivant.png " class="btnIcon " />
+                    </button>
+                </div>
+
+            </ion-slide>
+
+            <ion-slide>
+                <div class="header ion-padding">
+                    <p style="padding-top: 20px;">Merci d'avoir rempli le Q1CS, veuillez signer pour obtenir un résumé de vos réponses </p>
+                </div>
+                <div class="bx-signature">
+                    <signature-pad [options]="signaturePadOptions"></signature-pad>
+                </div>
+                <ion-button full color="danger" (click)="clean()">Effacer</ion-button>
+                <ion-button full color="secondary" (click)="generateSignature()">Enregistrer</ion-button>
+
+                <div class="signature">
+                    <img *ngIf="pathImageSignature" src="{{pathImageSignature}}">
+                </div>
+
+                <div class="btn-swipe ">
+                    <button type="button" (click)="prev()">
+                        <img src="assets/imgs/precedant.png" class="btnIcon" />
+                    </button>
+
+                    <button type="submit ">
+                        <img src="assets/imgs/suivant.png" *ngIf="!pathImageSignature" class="btnIcon" />
+                        <img src="assets/imgs/checkmark.png" *ngIf="pathImageSignature" (click)="createPdf()"
+                            class="btnIcon" />
+                    </button>
+                </div>
+
+            </ion-slide>
+
+        </ion-slides>
+    </ng-template>
+
+
+</ion-content>

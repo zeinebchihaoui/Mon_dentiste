@@ -1,0 +1,40 @@
+<ion-content fullscreen (click)="dismiss()">
+
+</ion-content>
+
+
+<ion-footer>
+    <ion-list class="animate__animated animate__fadeInUp " lines="none">
+        <div class="alert_info ">
+            <div class="d-flex">
+                <p class="ion-no-margin">Veuillez sélectionnez un compte</p>
+                <div class=" end">
+                    <ion-icon class="zmdi zmdi-close ion-text-start" (click)="dismiss()"></ion-icon>
+                </div>
+            </div>
+            <div class="form ion-no-padding">
+                <div class="radio_list">
+                    <ion-radio-group>
+                        <div class="scroll-x ">
+                            <ion-row>
+                                <ion-col size="12" class="ion-text-center">
+                                    <ion-item class="animate__animated animate__zoomIn ion-margin-vertical"
+                                        *ngFor="let user of users" (click)="selectPatient(user)">
+                                        <ion-label>
+                                            <h4 class="d-flex">Nom : <span class="end">{{user.per_nom}} </span></h4>
+                                            <h4 class="d-flex">Prénom : <span class="end">{{user.per_prenom}} </span>
+                                            </h4>
+                                            <h4 class="d-flex">Date de naissance : <span
+                                                    class="end">{{formatDate(user.per_datnaiss)}} </span></h4>
+                                        </ion-label>
+                                        <ion-radio slot="start" value={{user.id_personne}}></ion-radio>
+                                    </ion-item>
+                                </ion-col>
+                            </ion-row>
+                        </div>
+                    </ion-radio-group>
+                </div>
+            </div>
+        </div>
+    </ion-list>
+</ion-footer>

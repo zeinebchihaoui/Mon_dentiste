@@ -1,0 +1,19 @@
+<ion-content>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-icon class="zmdi zmdi-close-circle-o" (click)="dismiss()"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <pinch-zoom *ngIf="display" #myPinch="pinchZoom" [disableZoomControl]="disable">
+          <img src="{{pathFile}}">
+        </pinch-zoom>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+</ion-content>

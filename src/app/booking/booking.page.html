@@ -1,0 +1,104 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="goBack()">
+                <ion-icon name="chevron-back-outline" mode='ios'></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Prise de Rendez vous</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="bg_blue_color">
+
+    <div id="container">
+
+        <div class="form">
+            <h5>{{nextRDV?.ActeLibelle}}</h5>
+            <form [formGroup]="bookingForm">
+                <ion-list lines="none">
+                    <ion-card>
+                        <h2>Sélectionnez le Date :</h2>
+                        <ion-radio-group formControlName="day" (ionChange)="onSelectedDay($event)">
+                            <ion-row>
+                                <ion-col class="animate__animated animate__zoomIn" size="4"
+                                    *ngFor="let booking of bookingsPerDay;">
+                                    <ion-item>
+                                        <ion-label>{{booking.day}}</ion-label>
+                                        <ion-radio slot="start" [value]="booking.day"></ion-radio>
+                                    </ion-item>
+                                </ion-col>
+                            </ion-row>
+                        </ion-radio-group>
+                    </ion-card>
+                    <ion-card>
+                        <h2>Sélectionnez l'heure :</h2>
+                        <ion-radio-group formControlName="hour" (ionChange)="onSelectedHour($event)">
+                            <ion-row>
+                                <ion-col class="animate__animated animate__zoomIn" size="3"
+                                    *ngFor="let hour of bookingHours;">
+                                    <ion-item>
+                                        <ion-label>{{hour.time}}</ion-label>
+                                        <ion-radio slot="start" [value]="hour.time"></ion-radio>
+                                    </ion-item>
+                                </ion-col>
+                            </ion-row>
+                        </ion-radio-group>
+                    </ion-card>
+                    <ion-card>
+                        <h2>Sélectionnez le Praticen :</h2>
+                        <ion-radio-group formControlName="practitioner" (ionChange)="onSelectedPractitioner($event)">
+                            <ion-row>
+                                <ion-col class="animate__animated animate__zoomIn" size="4"
+                                    *ngFor="let practitioner of practitionerStaff;">
+                                    <ion-item>
+                                        <ion-label>{{practitioner.prenom}} {{practitioner.nom}}</ion-label>
+                                        <ion-radio slot="start" [value]="practitioner.id"></ion-radio>
+                                    </ion-item>
+                                </ion-col>
+                            </ion-row>
+                        </ion-radio-group>
+                    </ion-card>
+                    <ion-card>
+                        <h2>Sélectionnez l'Assistante :</h2>
+                        <ion-radio-group formControlName="assistant" (ionChange)="onSelectedAssistant($event)">
+                            <ion-row>
+                                <ion-col class="animate__animated animate__zoomIn" size="4"
+                                    *ngFor="let practitioner of assistantStaff;">
+                                    <ion-item>
+                                        <ion-label>{{practitioner.prenom}} {{practitioner.nom}}</ion-label>
+                                        <ion-radio slot="start" [value]="practitioner.id"></ion-radio>
+                                    </ion-item>
+                                </ion-col>
+                            </ion-row>
+                        </ion-radio-group>
+                    </ion-card>
+                    <ion-card>
+                        <h2>Sélectionnez le moyen de communication :</h2>
+                        <ion-radio-group formControlName="contactType" (ionChange)="onSelectedAssistant($event)">
+                            <ion-row>
+                                <ion-col class="animate__animated animate__zoomIn" size="4">
+                                    <ion-item>
+                                        <ion-label> Télephone </ion-label>
+                                        <ion-radio slot="start" value="2"></ion-radio>
+                                    </ion-item>
+                                </ion-col>
+                                <ion-col class="animate__animated animate__zoomIn" size="4">
+                                    <ion-item>
+                                        <ion-label> Mail </ion-label>
+                                        <ion-radio slot="start" value="1"></ion-radio>
+                                    </ion-item>
+                                </ion-col>
+                            </ion-row>
+                        </ion-radio-group>
+                    </ion-card>
+                </ion-list>
+            </form>
+        </div>
+    </div>
+</ion-content>
+<ion-footer class="ion-no-border">
+    <ion-button size="large" shape="block" class="btn animate__animated animate__fadeInUp" (click)="onSubmitForm()">
+        Valider
+    </ion-button>
+</ion-footer>

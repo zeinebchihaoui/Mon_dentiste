@@ -1,0 +1,25 @@
+.title-container {
+    padding: 10vw;
+    color: var(--text-light) !important;
+}
+
+.bx-item {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 15px;
+    border: 2px solid;
+    width: 100%;
+    color: var(--white);
+    border-color: var(--white) !important;
+    border-radius: 8px;
+    background-color: var(--primary) !important;
+    text-align: center;
+    min-height: 100px;
+    justify-content: center;
+    .iconCustom {
+        max-width: 15vw;
+        max-height: 15vw;
+        margin: 10px 0;
+    }
+}

@@ -1,0 +1,116 @@
+ion-header {
+    ion-icon {
+        color: var(--white);
+    }
+}
+
+h2 {
+    margin: 0;
+    color: var(--text-light);
+    font-weight: 500;
+    font-size: 17px;
+    padding: 9px 15px 14px 15px;
+}
+
+ion-list {
+    background: var(--transparent) !important;
+    margin: 0;
+    padding: 0;
+    padding-top: 8px;
+    .box-title {
+        margin: 0;
+        color: var(--text-dark);
+        font-weight: 500;
+        font-size: 16px;
+        padding: 8px 15px 8px 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        span {
+            padding-left: 12;
+        }
+    }
+    ion-item {
+        padding: 12px 10px 12px 0;
+        background: var(--white);
+        --inner-padding-end: 0px;
+        --inner-min-height: unset !important;
+        --padding-start: 0;
+        --highligh-color-focused: var(--transparent) !important;
+        margin-bottom: 5px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 1px -5px, rgba(0, 0, 0, 0.14) 0px 2px 4px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
+        .item_inner {
+            width: 100%;
+            .date_time {
+                min-width: 65px;
+                text-align: center;
+                position: relative;
+                margin-right: 11px;
+                h3 {
+                    margin: 0;
+                    color: var(--text-light);
+                    font-weight: 500;
+                    font-size: 0.65rem;
+                    text-transform: uppercase;
+                }
+                h4 {
+                    margin: 0;
+                    color: var(--primary);
+                    font-size: 2.14rem;
+                    padding-bottom: 7px;
+                    line-height: 35px;
+                }
+                &::after {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    right: 0;
+                    margin: auto 0;
+                    background: var(--text-light);
+                    width: 1px;
+                    height: 65px;
+                }
+            }
+            .appointment_details {
+                width: 100%;
+                overflow: hidden;
+                .box_details {
+                    padding-bottom: 17px;
+                    width: 100%;
+                    .img_box {
+                        min-width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        margin-right: 12px;
+                    }
+                    .text_box {
+                        width: 100%;
+                        overflow: hidden;
+                        h2 {
+                            padding: 0;
+                            margin: 0;
+                            font-size: 0.85rem;
+                            font-weight: 700;
+                            color: var(--text-dark);
+                            span.name {
+                                display: block;
+                                width: 100%;
+                            }
+                            ion-icon {
+                                font-size: 1.3rem;
+                                color: var(--text-light2);
+                                min-width: 25px;
+                            }
+                        }
+                        h3 {
+                            margin: 0;
+                            color: var(--primary);
+                            font-size: 1rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

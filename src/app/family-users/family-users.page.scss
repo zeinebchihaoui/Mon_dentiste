@@ -1,0 +1,102 @@
+ion-content {
+    --background: var(--transparent);
+}
+
+ion-footer {
+    background: var(--bg-yelow-color);
+    height: auto;
+    overflow: auto;
+    height: 50vh;
+    ion-list {
+        background: var(--bg-yelow-color);
+        text-align: center;
+        margin: 23px;
+        border-radius: 7px;
+        padding: 10px;
+        .form {
+            padding-top: 10px;
+            width: 100% !important;
+            .radio_list {
+                ion-radio-group {
+                    width: 100%;
+                    display: block;
+                    padding-bottom: 10px;
+                    --animate-duration: 0.15s;
+
+                    .scroll-x {
+                        width: 100%;
+                        overflow: hidden;
+                        overflow-x: hidden;
+                        white-space: pre-wrap;
+                        ion-item {
+                            background: var(--white);
+                            border-radius: 8px;
+                            position: relative;
+                            margin: 8px 5px;
+                            overflow: hidden;
+                            border: 1px solid var(--primary) !important;
+                            transition: all 0.2s;
+                            padding: 0 !important;
+                            text-align: center;
+                            ion-radio {
+                                position: absolute;
+                                z-index: 999;
+                                width: 100%;
+                                height: 100%;
+                                margin: 0;
+                                --color: var(--transparent) !important;
+                                --color-checked: var(--transparent) !important;
+                            }
+                            ion-label {
+                                width: 100% !important;
+                                max-width: 100% !important;
+                                text-align: center;
+                                position: relative;
+                                color: var(--white);
+                                font-weight: 500;
+                                font-size: 13px !important;
+                                height: 100%;
+                                margin: 0 !important;
+                                text-transform: unset !important;
+                                padding: 0 9px;
+                                min-height: 27px;
+                                line-height: 20px;
+                                h4 {
+                                    color: var(--text-light);
+                                    span {
+                                        color: var(--primary);
+                                    }
+                                }
+                            }
+                            &::before {
+                                content: "";
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                right: 0;
+                                bottom: 0;
+                                margin: auto;
+                                width: 0;
+                                height: 0;
+                                transition: all 0.3s;
+                                background: var(--primary);
+                                border-radius: 8px;
+                                opacity: 0.3;
+                            }
+                            &.item-radio-checked {
+                                border-color: var(--primary) !important;
+                                ion-label {
+                                    color: var(--primary) !important;
+                                }
+                                &::before {
+                                    width: 110%;
+                                    height: 110%;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

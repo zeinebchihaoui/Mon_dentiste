@@ -1,0 +1,41 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>{{medicalTitle}}</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="close()">
+                <ion-icon slot="icon-only" name="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+
+    <div class="search_box d-flex animate__animated animate__fadeInUp">
+        <ion-icon class="zmdi zmdi-search ion-text-start"></ion-icon>
+        <ion-searchbar class="ion-no-padding" searchIcon="hide" (ionChange)="searchCateg($event)" placeholder="Chercher"></ion-searchbar>
+    </div>
+
+</ion-header>
+
+<ion-content fullscreen>
+
+    <ion-list lines="none">
+        <ion-radio-group class="bx-radio" [(ngModel)]="userIdSelected">
+            <div *ngFor="let item of users | filter:textSearch">
+                <ion-item class="animate__animated animate__fadeInUp ">
+                    <div class="item_inner d-flex ">
+                        <ion-radio mode='md' value="{{item.id_personne}}"></ion-radio>
+                        <h3> {{item.per_nom}} {{item.per_prenom}} </h3>
+                    </div>
+                </ion-item>
+            </div>
+        </ion-radio-group>
+    </ion-list>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Chargement de données..">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>
+
+
+<ion-footer class="ion-no-border animate__animated animate__fadeInUp ">
+    <ion-button size="large " shape="full " class="btn " (click)="onSelectUser() ">Enregistrer</ion-button>
+</ion-footer>

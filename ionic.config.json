@@ -1,0 +1,7 @@
+{
+  "name": "mondentiste",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

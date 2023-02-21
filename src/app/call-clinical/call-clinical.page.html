@@ -1,0 +1,23 @@
+<ion-content fullscreen (click)="dismiss()">
+
+</ion-content>
+
+<ion-footer class="ion-no-border nimate__animated animate__fadeInUp">
+    <ion-list lines="none">
+        <div class="alert_info ion-padding">
+            <p class="ion-no-margin ion-text-center danger">Vous n'avez pas encore </p>
+            <p class="ion-no-margin ion-text-center danger"> de rendez-vous prévisionnel</p>
+            <ion-row class="ion-align-items-center ion-margin-top">
+                <ion-col size="12">
+                    <p> Pour prendre un RDV rapide veuillez nous contacter</p>
+                </ion-col>
+                <ion-col size="12">
+                    <ion-button (click)="callJoint()">
+                        <ion-icon slot="start" name="call-outline"></ion-icon>
+                        Appeler
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+        </div>
+    </ion-list>
+</ion-footer>

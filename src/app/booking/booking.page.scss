@@ -1,0 +1,110 @@
+ion-header {
+    ion-icon {
+        color: var(--white);
+    }
+}
+
+.form {
+    width: calc(100% - 35px);
+    h5 {
+        color: var(--primary);
+        margin: 10px 0;
+        font-size: 16px;
+        text-align: center;
+    }
+    ion-list {
+        ion-card {
+            margin: 0;
+            width: 100%;
+            box-shadow: none;
+            border-radius: 0;
+            padding: 20px 0;
+            background: none;
+            h2 {
+                color: #000;
+                margin: 0;
+                font-size: 0.9rem;
+                margin-bottom: 10px;
+            }
+            ion-radio-group {
+                ion-row {
+                    margin: -5px;
+                    padding: 0 2px;
+                    ion-col {
+                        ion-item {
+                            display: inline-block;
+                            background: var(--white);
+                            border-radius: 8px;
+                            position: relative;
+                            margin: 0 5px;
+                            width: fit-content;
+                            overflow: hidden;
+                            border: 2px solid var(--transparent) !important;
+                            transition: all 0.2s;
+                            padding: 0 !important;
+                            text-align: center;
+                            min-height: 30px !important;
+                            ion-radio {
+                                position: absolute;
+                                z-index: 999;
+                                width: 100%;
+                                height: 100%;
+                                margin: 0;
+                                --color: var(--transparent) !important;
+                                --color-checked: var(--transparent) !important;
+                            }
+                            ion-label {
+                                width: 100% !important;
+                                max-width: 100% !important;
+                                text-align: center;
+                                position: relative;
+                                color: var(--white);
+                                font-weight: 500;
+                                font-size: 14px !important;
+                                margin: 0 !important;
+                                text-transform: unset !important;
+                                padding: 0 9px;
+                            }
+                            &::before {
+                                content: "";
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                right: 0;
+                                bottom: 0;
+                                margin: auto;
+                                width: 0;
+                                height: 0;
+                                transition: all 0.3s;
+                                background: var(--primary);
+                                border-radius: 8px;
+                                opacity: 0.3;
+                            }
+                            &.item-radio-checked {
+                                border-color: var(--primary) !important;
+                                ion-label {
+                                    color: var(--primary) !important;
+                                }
+                                &::before {
+                                    width: 110%;
+                                    height: 110%;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+ion-footer {
+    padding: 0 19px 19px 19px;
+    .button.btn {
+        --animate-duration: 0.4s !important;
+        --box-shadow: 0 17px 15px -13px var(--ion-color-success) !important;
+        --background: var(--ion-color-success);
+        font-size: 16px;
+        font-weight: 500;
+    }
+}

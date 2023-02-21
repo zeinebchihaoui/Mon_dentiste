@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="start" *ngIf="rdvExist">
+            <ion-button (click)="goBack()">
+                <ion-icon name="chevron-back-outline" mode='ios'></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Accueil</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <div class="banner">
+        <div class="banner_img">
+            <img src="assets/imgs/sundaytimes.jpg">
+        </div>
+
+        <ion-button size="large" color="primary" shape="block" class="btn animate__animated animate__fadeInUp" style="--animate-duration: .3s;" (click)="bookingAppoitment()">
+            {{titleBadge}}
+        </ion-button>
+    </div>
+    <div class="text_box">
+        <p class="animate__animated animate__fadeInUp">
+            Les Cliniques <strong>B And Smile</strong> mettent à votre disposition l'application
+            <strong class="bold-span">" Mon Dentiste "</strong> pratique et simple d’utilisation, grâce à laquelle il est possible aujourd'hui de remplir votre questionnaire médical, nous envoyer des photos de votre dentition et prendre Rendez-vous à
+            la date et l'heure qui vous conviennent.<br> En téléchargeant <strong class="bold-span">Mon
+                Dentiste</strong> vous pourrez avoir accès à votre dossier numérisé et faire le suivi
+            <strong class="bold-span">à distance.</strong>
+        </p>
+    </div>
+
+</ion-content>

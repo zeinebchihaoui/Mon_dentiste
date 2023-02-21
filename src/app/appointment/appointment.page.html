@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title> Mes Rendez-Vous </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg_color" fullscreen>
+  <h2 *ngIf="!dislayAppointements">Vous n'avez pas encore de rendez-vous.</h2>
+  <ion-list *ngIf="dislayAppointements" lines="none">
+    <h2> Rendez-vous à venir</h2>
+    <ion-item class="animate__animated animate__fadeInUp" *ngFor="let appt of futureAppointements;">
+      <div class="item_inner d-flex">
+        <div class="date_time">
+          <h3>{{appt.apptMonth}}</h3>
+          <h4>{{appt.apptDay}}</h4>
+          <h3>{{appt.apptYear}}</h3>
+        </div>
+        <div class="appointment_details">
+          <div class="doctor_details d-flex">
+
+            <div class="text_box">
+              <h2 class="d-flex">
+                <span class="name"> {{appt.titleActe}}</span>
+                <ion-badge color="{{(appt.accomplished) ? 'success':'danger'}}">
+                  {{(appt.accomplished) ? 'Effectué':'Non effectué'}}
+                </ion-badge>
+              </h2>
+              <h3>{{appt.apptHour}}</h3>
+              <h3>{{appt.apptDuration}} min</h3>
+              <h3>{{appt.apptPrice}} CHF</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ion-item>
+    <h2> Rendez-vous passés </h2>
+    <ion-item class="animate__animated animate__fadeInUp" *ngFor="let appt of pastAppointements;">
+      <div class="item_inner d-flex">
+        <div class="date_time">
+          <h3>{{appt.apptMonth}}</h3>
+          <h4>{{appt.apptDay}}</h4>
+          <h3>{{appt.apptYear}}</h3>
+        </div>
+        <div class="appointment_details">
+          <div class="doctor_details d-flex">
+
+            <div class="text_box">
+              <h2 class="d-flex">
+                <span class="name"> {{appt.titleActe}}</span>
+                <ion-badge color="{{(appt.accomplished) ? 'success':'danger'}}">
+                  {{(appt.accomplished) ? 'Effectué':'Non effectué'}}
+                </ion-badge>
+              </h2>
+              <h3>{{appt.apptHour}}</h3>
+              <h3>{{appt.apptDuration}} min</h3>
+              <h3>{{appt.apptPrice}} CHF</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

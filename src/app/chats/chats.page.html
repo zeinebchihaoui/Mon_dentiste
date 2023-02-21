@@ -1,0 +1,56 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text="" defaultHref="tabs/account" icon="chevron-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Question</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <div id="container">
+        <ion-list lines="none">
+            <h4> Choisissez un type de question :</h4>
+            <ion-item class="animate__animated animate__fadeInUp bx-clinique" (click)="chatscreen(6, 'Question : Clinique')">
+                <div class="item_inner">
+                    <div class="item_header d-flex">
+                        <ion-icon class="zmdi zmdi-help-outline"></ion-icon>
+                        <div class="text_box">
+                            <h2 class="d-flex">
+                                <span class="name"> Question : Clinique </span>
+                            </h2>
+                            <h3>Avez-vous des questions Cliniques ?</h3>
+                        </div>
+                    </div>
+                </div>
+            </ion-item>
+            <ion-item class="animate__animated animate__fadeInUp bx-admin" (click)="chatscreen(7,'Question : Administratif')">
+                <div class="item_inner">
+                    <div class="item_header d-flex">
+                        <ion-icon class="zmdi zmdi-help-outline"></ion-icon>
+                        <div class="text_box">
+                            <h2 class="d-flex">
+                                <span class="name"> Question : Administratif </span>
+                            </h2>
+                            <h3> Avez-vous des questions Administratives ? </h3>
+                        </div>
+                    </div>
+                </div>
+            </ion-item>
+            <ion-item class="animate__animated animate__fadeInUp bx-finance" (click)="chatscreen(8,'Question : Financier')">
+                <div class="item_inner">
+                    <div class="item_header d-flex">
+                        <ion-icon class="zmdi zmdi-help-outline"></ion-icon>
+                        <div class="text_box">
+                            <h2 class="d-flex">
+                                <span class="name"> Question : Financier </span>
+                            </h2>
+                            <h3> Avez-vous des questions Financiers ? </h3>
+                        </div>
+                    </div>
+                </div>
+            </ion-item>
+
+        </ion-list>
+    </div>
+</ion-content>

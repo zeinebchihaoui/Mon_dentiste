@@ -1,0 +1,37 @@
+ion-content {
+    --background: var(--transparent);
+}
+
+ion-footer {
+    background: var(--bg-yelow-color);
+    height: auto;
+    overflow: auto;
+    height: 50vh;
+    ion-list {
+        background: var(--bg-yelow-color);
+        text-align: center;
+        border: dashed var(--primary);
+        margin: 35px;
+        border-radius: 7px;
+        .alert_info {
+            p {
+                margin: 0;
+                color: var(--text-black);
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 1.2;
+                letter-spacing: 0.1px;
+            }
+            .danger {
+                color: var(--danger) !important;
+                font-size: 20px !important;
+                font-weight: 700 !important;
+            }
+            ion-button {
+                margin-top: 20px;
+                font-size: 17px !important;
+                letter-spacing: 0.4px !important;
+            }
+        }
+    }
+}

@@ -1,0 +1,47 @@
+<ion-header>
+    <ion-toolbar class="bg-{{color}}">
+        <ion-buttons slot="start">
+            <ion-back-button text="" defaultHref="chats" icon="chevron-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            <div class="title_inner d-flex">
+                {{title}}
+            </div>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg_blue_color">
+
+    <div class="chat_container" *ngIf="listComments.length">
+        <div class="chat_box animate__animated animate__zoomIn " *ngFor=" let item of listComments"
+            [ngClass]="{'send': item.sender == 1, 'receive': item.sender == 2}">
+            <div class="text_box">
+                {{item.comment}}
+            </div>
+        </div>
+        <!-- <div class="chat_box animate__animated animate__zoomIn receive">
+            <div class="user_img_box center_img">
+                <img src="assets/imgs/profile1.png" class="crop_img">
+            </div>
+            <div class="text_box ">
+                <h2>Hello, How may I help you.? Tell me about your problem</h2>
+            </div>
+        </div> -->
+    </div>
+
+</ion-content>
+
+<ion-footer class="ion-no-border animate__animated animate__fadeInUp">
+    <div class="form">
+        <ion-list lines="none d-flex">
+            <ion-item lines="none">
+                <ion-textarea auto-grow="true" rows="1" placeholder="Saisir le message" [(ngModel)]="message.comment">
+                </ion-textarea>
+            </ion-item>
+            <div class="send_btn end">
+                <ion-icon class="zmdi zmdi-mail-send" (click)="sendComment()" color="primary"></ion-icon>
+            </div>
+        </ion-list>
+    </div>
+</ion-footer>

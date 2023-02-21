@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="goBack()">
+                <ion-icon name="chevron-back-outline" mode='ios'></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Choisir Catégorie</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+
+    <div id="container">
+
+        <ion-row>
+            <ion-col size="4"   *ngFor="let item of category">
+                <div class="documents_box" [ngStyle]="{'background-color': item.backgroundcolor }">
+                 
+                    <div class="img_box center_img" (click)="selectCateg(item)">
+                        <img [src]="item.imageCamera" class="crop_img" *ngIf="!item.photo">
+                        <h3>{{item.nom}}</h3>
+                        <div class="badge">{{item.nbImages}} </div>
+                        <div *ngIf="item.photo">
+                            <img class="crop_img" [src]="pathFile +  item.photo" />
+                            <!--   <img [src]="'data:image/jpg;base64,'+ item.vignette" class="crop_img"> -->
+                        </div>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+
+    </div>
+
+</ion-content>

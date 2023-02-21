@@ -1,0 +1,279 @@
+<ion-content class="bg_blue_color">
+  <div class="banner">
+    <div class="logo ion-text-center animate__animated animate__zoomIn" style="--animate-duration: .4s;">
+      <img src="assets/imgs/logo.png">
+    </div>
+    <ion-segment mode="md" lines="none" [(ngModel)]="section">
+      <ion-segment-button class="animate__animated animate__fadeInLeft" mode="md" lines="none" value="signin" style="--animate-duration: .4s;">
+        Connexion
+      </ion-segment-button>
+      <ion-segment-button class="animate__animated animate__fadeInRight" mode="md" lines="none" value="signup" style="--animate-duration: .4s;">
+        Inscription
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div class="form" [ngSwitch]="section">
+    <ion-list lines="none" *ngSwitchCase="'signin'">
+      <div [formGroup]="loginForm">
+        <div class="radio_list">
+          <ion-radio-group class="bx-clinical" formControlName="cabinet">
+            <div class="scroll-x">
+              <ion-row>
+                <ion-col size="6">
+                  <ion-item class="animate__animated animate__zoomIn">
+                    <ion-label class="d-flex flex-column ion-justify-content-center">
+                      Clinique d'Orthodontie <br> B And Smile <br>
+                      <strong> des Bergues</strong>
+                    </ion-label>
+                    <ion-radio slot="start" value="bergues"></ion-radio>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-item class="animate__animated animate__zoomIn">
+                    <ion-label class="d-flex flex-column ion-justify-content-center">
+                      Clinique d'Orthodontie <br> B And Smile <br>
+                      <strong> de Chantepoulet </strong>
+                    </ion-label>
+                    <ion-radio slot="start" value="centre"></ion-radio>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </div>
+          </ion-radio-group>
+        </div>
+        <ion-row>
+          <ion-col size="12">
+            <ion-item class="animate__animated animate__fadeInUp" lines="none">
+              <ion-input mode="md" type="text" placeholder="Email" formControlName="email"></ion-input>
+            </ion-item>
+            <span class="error" *ngIf="isSubmittedLogin && logincontrol.email.errors?.required">
+              Veuillez saisir votre adresse e-mail.
+            </span>
+            <span class="error" *ngIf="isSubmittedLogin && logincontrol.email.errors?.pattern">
+              Veuillez saisir une adresse e-mail valide.
+            </span>
+          </ion-col>
+          <ion-col size="12">
+            <ion-item class="animate__animated animate__fadeInUp" lines="none" style="padding-right: 0;">
+              <ion-input formControlName="password" mode="md" type="password" placeholder="Password"
+                         [type]="showPassword ? 'text' : 'password'">
+              </ion-input>
+              <ion-buttons class="showPassword">
+                <ion-button (click)="onPasswordToggle()">
+                  <ion-icon slot="icon-only" color="medium" [name]="showPassword ? 'eye-off' : 'eye'"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+            </ion-item>
+            <span class="error" *ngIf="isSubmittedLogin && logincontrol.password.errors?.required">
+              Veuillez saisir votre Mot de passe.
+            </span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="ion-text-right">
+            <a (click)="openPatientAccount('resetPassword')" class="label">Mot de passe oublié ?</a>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <div class="ion-text-center">
+              <ion-button class="animate__animated animate__fadeInUp" (click)="onSubmit()"> Connexion
+              </ion-button>
+            </div>
+          </ion-col>
+        </ion-row>
+
+      </div>
+    </ion-list>
+
+    <ion-list lines="none" *ngSwitchCase="'signup'">
+
+      <div [formGroup]="registerForm">
+
+        <ion-row class="ion-text-center patient-account">
+          <ion-col>
+            <span> Vous avez déjà un dossier patient ? </span>
+            <a (click)="openPatientAccount()"><br> Inscrivez-vous </a>
+            <span> avec votre adresse mail</span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">
+            <ion-item class="animate__animated animate__fadeInUp" lines="none">
+              <ion-input mode="md" type="text" placeholder="Nom" formControlName="nom"></ion-input>
+            </ion-item>
+            <span class="error" *ngIf="isSubmittedRegister && registercontrol.nom.errors?.required">
+              Veuillez saisir votre Nom.
+            </span>
+          </ion-col>
+          <ion-col size="6">
+            <ion-item class="animate__animated animate__fadeInUp" lines="none">
+              <ion-input mode="md" type="text" placeholder="Prénom" formControlName="prenom"></ion-input>
+            </ion-item>
+            <span class="error" *ngIf="isSubmittedRegister && registercontrol.prenom.errors?.required">
+              Veuillez saisir votre Prénom.
+            </span>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="12">
+            <ion-item class="animate__animated animate__fadeInUp" lines="none">
+              <ion-input mode="md" type="text" placeholder="Email" formControlName="mail"></ion-input>
+            </ion-item>
+            <span class="error" *ngIf="isSubmittedRegister && registercontrol.mail.errors?.required">
+              Veuillez saisir votre adresse e-mail.
+            </span>
+            <span class="error" *ngIf="isSubmittedRegister && registercontrol.mail.errors?.pattern">
+              Veuillez saisir une adresse e-mail valide.
+            </span>
+          </ion-col>
+        </ion-row>
+
+        <ion-item>
+          <ion-label style="text-transform: capitalize;">Indicatif Téléphone</ion-label>
+          <ion-select formControlName="idPays" ok-text="ok" cancel-text="cancel">
+            <ion-select-option value="{{element.id_pays}}" *ngFor="let element of pays" selected="true">
+              {{element.indicatif_telephonique}} ({{element.code}})
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-row>
+          <ion-col size="12">
+            <ion-item class="animate__animated animate__fadeInUp" lines="none">
+              <ion-input mode="md" type="number" placeholder=" Téléphone" formControlName="telephone">
+              </ion-input>
+            </ion-item>
+            <span class="error" *ngIf="isSubmittedRegister && registercontrol.telephone.errors?.required">
+              Veuillez saisir votre Téléphone.
+            </span>
+          </ion-col>
+
+          <ion-col size="12">
+            <ion-item class="animate__animated animate__fadeInUp" lines="none">
+              <ion-input mode="md" type="password" placeholder=" Mot de passe " formControlName="mdp">
+              </ion-input>
+            </ion-item>
+            <span class="error"
+                  *ngIf="isSubmittedRegister && registercontrol.mdp.errors?.required && registercontrol.mdp.errors ">
+              Veuillez saisir un mot de passe.
+            </span>
+          </ion-col>
+
+          <ion-col size="12">
+            <ion-item class="animate__animated animate__fadeInUp" lines="none">
+              <ion-input mode="md" type="password" placeholder="Mot de passe à nouveau" formControlName="mdp2">
+              </ion-input>
+            </ion-item>
+            <div *ngIf="isSubmittedRegister && registercontrol.mdp2.errors" class="invalid-feedback">
+              <span class="error" *ngIf="registercontrol.mdp2.errors.required">
+                Veuillez confirmer votre mot de passe.
+              </span>
+              <span class="error" *ngIf="registercontrol.mdp2.errors.mustMatch">
+                Les mots de passe ne correspondent pas.
+              </span>
+            </div>
+
+          </ion-col>
+
+          <ion-col size="12">
+            <ion-item class="animate__animated animate__fadeInUp" lines="none">
+              <ion-datetime displayFormat="MM/DD/YYYY" placeholder="Date de naissance" formControlName="naissance">
+              </ion-datetime>
+            </ion-item>
+            <span class="error" *ngIf="isSubmittedRegister && registercontrol.naissance.errors?.required">
+              Veuillez saisir votre Date de naissance.
+            </span>
+          </ion-col>
+        </ion-row>
+
+        <div class="radio_list">
+          <ion-radio-group class="bx-sex" formControlName="sexe">
+            <h2>Sexe</h2>
+            <div class="scroll-x">
+              <ion-row>
+                <ion-col size="6" offset="3">
+                  <ion-item class="animate__animated animate__zoomIn">
+                    <ion-label class="d-flex flex-column ion-justify-content-center">
+                      Homme
+                    </ion-label>
+                    <ion-radio slot="start" value="Male"></ion-radio>
+                  </ion-item>
+
+                  <ion-item class="animate__animated animate__zoomIn">
+                    <ion-label class="d-flex flex-column ion-justify-content-center">
+                      Femme
+                    </ion-label>
+                    <ion-radio slot="start" value="Female"></ion-radio>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </div>
+          </ion-radio-group>
+        </div>
+        <div class="radio_list">
+          <ion-radio-group class="bx-civility" formControlName="titre">
+            <h2>Civilité</h2>
+            <div class="scroll-x">
+              <ion-item>
+                <ion-label>M.</ion-label>
+                <ion-radio slot="start" value="M."></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label>Mlle</ion-label>
+                <ion-radio slot="start" value="Mlle"></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label>Mme.</ion-label>
+                <ion-radio slot="start" value="Mme."></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label>Dr.</ion-label>
+                <ion-radio slot="start" value="Dr."></ion-radio>
+              </ion-item>
+            </div>
+          </ion-radio-group>
+        </div>
+        <div class="radio_list">
+          <ion-radio-group class="bx-clinical" formControlName="cabinet">
+            <h2>Cabinet</h2>
+            <div class="scroll-x">
+              <ion-row>
+                <ion-col size="6">
+                  <ion-item class="animate__animated animate__zoomIn">
+                    <ion-label class="d-flex flex-column ion-justify-content-center">
+                      Clinique d'Orthodontie <br> B And Smile <br>
+                      <strong> des Bergues</strong>
+                    </ion-label>
+                    <ion-radio slot="start" value="bergues"></ion-radio>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-item class="animate__animated animate__zoomIn">
+                    <ion-label class="d-flex flex-column ion-justify-content-center">
+                      Clinique d'Orthodontie <br> B And Smile <br>
+                      <strong> de Chantepoulet </strong>
+                    </ion-label>
+                    <ion-radio slot="start" value="centre"></ion-radio>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </div>
+          </ion-radio-group>
+        </div>
+
+        <ion-row>
+          <ion-col>
+            <div class="ion-text-center">
+              <ion-button class="animate__animated animate__fadeInUp" (click)="register()"> Inscription
+              </ion-button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-list>
+  </div>
+
+</ion-content>

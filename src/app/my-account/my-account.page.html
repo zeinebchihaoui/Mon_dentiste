@@ -1,0 +1,72 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Mon compte</ion-title>
+    </ion-toolbar>
+    <div class="profile_info" *ngIf="patient">
+        <h2> {{patient.pers_titre}} {{patient.per_prenom}} {{patient.per_nom}}</h2>
+        <p>{{patient.per_telprinc}}</p>
+        <p>{{patient.per_email}}</p>
+    </div>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+    <ion-list lines="none">
+        <ion-item class="animate__animated animate__fadeInUp" (click)="openQ1cs()">
+            <div class="item_inner d-flex">
+                <ion-icon class="zmdi zmdi-assignment-check"></ion-icon>
+                <h2> Q1CS </h2>
+            </div>
+        </ion-item>
+        <ion-item class="animate__animated animate__fadeInUp" (click)="goToPage('deadline')">
+            <div class="item_inner d-flex">
+                <ion-icon class="zmdi zmdi-money-box"></ion-icon>
+                <h2> Mes Échéances</h2>
+            </div>
+        </ion-item>
+        <ion-item class="animate__animated animate__fadeInUp" (click)="goToPage('chats')">
+            <div class="item_inner d-flex">
+                <ion-icon class="zmdi zmdi-comments"></ion-icon>
+                <h2> Questions </h2>
+            </div>
+        </ion-item>
+
+        <ion-item class="animate__animated animate__fadeInUp" (click)="goToPage('notification')">
+            <div class="item_inner d-flex">
+                <ion-icon class="zmdi zmdi-notifications"></ion-icon>
+                <h2>Notifications</h2>
+            </div>
+        </ion-item>
+        <ion-item class="animate__animated animate__fadeInUp" (click)="goToPage('about')">
+            <div class="item_inner d-flex">
+                <ion-icon class="zmdi zmdi-alert-circle-o"></ion-icon>
+                <h2> Qui sommes-nous</h2>
+            </div>
+        </ion-item>
+        <ion-item class="animate__animated animate__fadeInUp" (click)="logOut()">
+            <div class="item_inner d-flex">
+                <ion-icon style="position: relative; right: 3px;" name="log-out-outline"></ion-icon>
+                <h2> Se déconnecter</h2>
+            </div>
+        </ion-item>
+    </ion-list>
+    <ion-grid class="bx-social ion-padding-top">
+        <ion-row class="ion-justify-content-center">
+            <ion-col size="2">
+                <ion-icon (click)="openURL('https://www.facebook.com/BAndSmileGeneva')" class="zmdi zmdi-facebook-box">
+                </ion-icon>
+            </ion-col>
+            <ion-col size="2">
+                <ion-icon (click)="openURL('https://www.instagram.com/bandsmilegeneva/?hl=fr')"
+                    class="zmdi zmdi-instagram"></ion-icon>
+            </ion-col>
+            <ion-col size="2">
+                <ion-icon (click)="openURL('https://www.youtube.com/channel/UCOBbv8Vtybkl7nOuwXDkPqw')"
+                    class="zmdi zmdi-youtube"></ion-icon>
+            </ion-col>
+            <ion-col size="2">
+                <ion-icon (click)="openURL('https://www.basmile.com/')" class="zmdi zmdi-wikipedia"></ion-icon>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
